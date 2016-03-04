@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour {
 	public Boundary boundary;
 
 	public GameObject shot;
+	public AudioSource audio;
 	public Transform shotSpawn;
 	public float fireRate;
 	private float nextFire = 0.0f;
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
+		audio = GetComponent<AudioSource> ();
 	}
 
 
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 			nextFire = Time.time + fireRate;
 			//will need to clean these up after they go off the screen
 			Object.Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			audio.Play ();
 		}
 	}
 
